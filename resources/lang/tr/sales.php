@@ -14,6 +14,8 @@ return [
     'qty' => 'Adet',
     'price' => 'Fiyat',
     'subtotal' => 'Ara Toplam',
+    'return'=>'İade',
+    'status'=> 'Durum',
     'action' => 'İşlem',
     'save_sale' => 'Satışı Kaydet',
     'no_items' => 'Sepette ürün yok. Lütfen ürün ekleyin.',

@@ -7,12 +7,19 @@ return [
     'brands_list' => 'Marka Listesi',
     'not_found' => 'Marka bulunamadı.',
     'action' => 'İşlem',
-
+     'product'=>'ürün',
     'add_category' => 'Yeni Kategori Ekle',
     'add_category_button' => 'Kategori Ekle',
     'categories_list' => 'Kategori Listesi',
     'categories_not_found' => 'Kategoriler bulunamadı.',
-
+    'title 1' => 'Ürün Hareket Geçmişi',
+    'product' => 'Ürün',
+    'warehouse_stock' => 'Depo Stoku',
+    'shop_stock' => 'Mağaza Stoku',
+    'transferred_qty' => 'Aktarılan Miktar',
+    'date' => 'Tarih',
+    'view_products' => 'Ürünleri Görüntüle',
+    'no_records' => 'Ürün transfer kaydı bulunamadı.',
     'add_new_product' => 'Yeni Ürün Ekle',
     'brand' => 'Marka',
     'select_brand' => '-- Marka Seçin --',
@@ -27,7 +34,7 @@ return [
 
     'update' => 'Güncelle',
     'edit_product' => 'Ürünü Düzenle',
-
+    'product_lists'=>'Mağaza Ürünleri',
     'product_detail' => 'Ürün Detayı',
     'brand' => 'Marka',
     'category' => 'Kategori',

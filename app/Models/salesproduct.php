@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class salesproduct extends Model
+class Salesproduct extends Model
 {
     protected $fillable=['sale_id','product_id','total','quantity','amount'];
 
-    public function product()
+public function shopproduct()
 {
-    return $this->belongsTo(Product::class);
+    return $this->belongsTo(shopproduct::class, 'product_id');
 }
+
+
 }

@@ -57,10 +57,8 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-           <li class="nav-item"><a href="{{ route('products.shop.product')}}" class="nav-link">{{ __('dashboard.shop_products') }}</a></li>
-            <li class="nav-item"><a href="{{ route('products.stock.management')}}" class="nav-link">{{ __('dashboard.stock_management') }}</a></li>
-
-
+           <li class="nav-item"><a href="{{ route('products.shop.product')}}" class="nav-link {{ Request::routeIs('products.shop.product') ? 'active' : '' }}">{{ __('dashboard.shop_products') }}</a></li>
+            <li class="nav-item"><a href="{{ route('products.stock.management')}}" class="nav-link {{ Request::routeIs('products.stock.management') ? 'active' : '' }}">{{ __('dashboard.stock_management') }}</a></li>
         </ul>
 
          <a href="#" class="br-menu-link">
@@ -71,10 +69,10 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('warehouse.brand')}}" class="nav-link">{{ __('dashboard.brand') }}</a></li>
-          <li class="nav-item"><a href="{{ route('warehouse.category')}}" class="nav-link">{{ __('dashboard.category') }}</a></li>
-          <li class="nav-item"><a href="{{ route('warehouse.new')}}" class="nav-link">{{ __('dashboard.new_product') }}</a></li>
-          <li class="nav-item"><a href="{{ route('warehouse.stock-management')}}" class="nav-link">{{ __('dashboard.stock_management') }}</a></li>
+          <li class="nav-item"><a href="{{ route('warehouse.brand')}}" class="nav-link {{ Request::routeIs('warehouse.brand')? 'active' : '' }}">{{ __('dashboard.brand') }}</a></li>
+          <li class="nav-item"><a href="{{ route('warehouse.category')}}" class="nav-link {{ Request::routeIs('warehouse.category')? 'active' : '' }} ">{{ __('dashboard.category') }}</a></li>
+          <li class="nav-item"><a href="{{ route('warehouse.new')}}" class="nav-link {{ Request::routeIs('warehouse.new')? 'active' : '' }}">{{ __('dashboard.new_product') }}</a></li>
+          <li class="nav-item"><a href="{{ route('warehouse.stock-management')}}" class="nav-link {{ Request::routeIs('warehouse.stock-management')? 'active' : '' }}">{{ __('dashboard.stock_management') }}</a></li>
 
 
           
@@ -88,8 +86,9 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('sales.new')}}" class="nav-link">{{ __('dashboard.new_sales') }}</a></li>
-          <li class="nav-item"><a href="{{ route('sales.history')}}" class="nav-link">{{ __('dashboard.history') }}</a></li>
+          <li class="nav-item"><a href="{{ route('sales.new')}}" class="nav-link {{ Request::routeIs('sales.new')? 'active' : '' }}">{{ __('dashboard.new_sales') }}</a></li>
+          <li class="nav-item"><a href="{{ route('sales.history')}}" class="nav-link {{ Request::routeIs('sales.history')? 'active' : '' }}">{{ __('dashboard.history') }}</a></li>
+           <li class="nav-item"><a href="{{ route('sales.products')}}" class="nav-link">Products History</a></li>
         </ul>
 
         <a href="{{ route('analytics')}}" class="text-white">
@@ -107,9 +106,21 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('customers.create')}}" class="nav-link">{{ __('dashboard.create_customer') }}</a></li>
-          <li class="nav-item"><a href="{{ route('customers.history')}}" class="nav-link">{{ __('dashboard.history') }}</a></li>
-        </ul>
+
+            <li class="nav-item">
+        <a href="{{ route('customers.create') }}" class="nav-link {{ Request::routeIs('customers.create') ? 'active' : '' }}">
+    {{ __('dashboard.create_customer') }}
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="{{ route('customers.history') }}" class="nav-link {{ Request::routeIs('customers.history') ? 'active' : '' }}">
+    {{ __('dashboard.history') }}
+  </a>
+</li>
+
+
+         </ul>
 
         <a href="#" class="br-menu-link">
           <div class="br-menu-item">
@@ -119,9 +130,20 @@
           </div>
         </a>
         <ul class="br-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('users.create')}}" class="nav-link">{{ __('dashboard.create_user') }}</a></li>
-          <li class="nav-item"><a href="{{ route('users.all')}}" class="nav-link">{{ __('dashboard.all_users') }}</a></li>
-        </ul>
+
+        <li class="nav-item">
+  <a href="{{ route('users.create') }}" class="nav-link {{ Request::routeIs('users.create') ? 'active' : 'user.create' }}">
+    {{ __('dashboard.create_user') }}
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="{{ route('users.all') }}" class="nav-link {{ Request::routeIs('users.all') ? 'active' : '' }}">
+    {{ __('dashboard.all_users') }}
+  </a>
+</li>
+
+           </ul>
 
         <a href="{{ route('setting')}}" class="text-white">
           <div class="br-menu-item">
@@ -150,16 +172,27 @@
         <nav class="nav">
 
 
-        <div class="dropdown me-3">
-    <select 
-        class="form-select form-select-sm bg-transparent mt-2 border-0"
-        style="width: auto; font-weight: 500; cursor: pointer;"
-         onchange="window.location.href='/language/' + this.value"
-    >
+       <div class="d-flex align-items-center me-5">
+    <!-- Language Dropdown -->
+
+<div>
+      <a href="{{ route('current-report') }}" class="btn btn-sm pull-left btn-success mt-2 text-light me-3">
+          <i class="fa fa-file-excel"></i> Export Current Report
+      </a>
+    </div>
+
+    <div class="me-2">
+        <select 
+            class="form-select form-select-sm bg-transparent mt-2 border-0"
+            style="width: auto; font-weight: 500; cursor: pointer;"
+            onchange="window.location.href='/language/' + this.value">
             <option value="en" @selected(app()->getLocale() === 'en')>English</option>
             <option value="tr" @selected(app()->getLocale() === 'tr')>Türkçe</option>
-        
-    </select>
+        </select>
+    </div>
+
+    <!-- Export Button -->
+    
 </div>
 
 

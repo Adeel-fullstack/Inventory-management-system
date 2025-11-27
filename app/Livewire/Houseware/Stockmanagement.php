@@ -16,6 +16,8 @@ class Stockmanagement extends Component
         if ($product) {
             $product->delete();
         }
+
+        session()->flash('error','Product Deleted Successfully');
     }
 
     public function export()

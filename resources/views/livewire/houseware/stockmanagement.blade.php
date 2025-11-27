@@ -1,5 +1,6 @@
 <div>
     <div class="container-fluid mb-3">
+            @include('includes.flash')
         <div class="row">
             <div class="col-lg-12">
 
@@ -36,24 +37,17 @@
                                         <td>{{ $product->category?->title ?? __('products.not_available') }}</td>
                                         <td>{{ $product->title }}</td>
                                         <td>{{ $product->quantity }}</td>
-                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->price ?? 'N/A' }}</td>
+
                                         <td>
                                             <a href="{{ route('warehouse.stock.detail', $product->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fa fa-eye"></i> {{ __('products.view') }}
                                             </a>
-<<<<<<< HEAD:resources/views/livewire/houseware/stockmanagement.blade.php
                                             <a href="{{ route('warehouse.editproduct', $product->id) }}" class="btn btn-success btn-sm">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <button wire:click="deleteproduct({{ $product->id }})" wire:confirm="Are you want to delete it" class="btn btn-danger btn-sm">
-                                                <i class="fa-solid fa-trash"></i>
-=======
-                                            <a href="{{ route('products.editproduct', $product->id) }}" class="btn btn-success btn-sm">
                                                 <i class="fa-solid fa-pen-to-square"></i> 
                                             </a>
                                             <button wire:click="deleteproduct({{ $product->id }})" wire:confirm="Are you want to delete it" class="btn btn-danger btn-sm">
                                                 <i class="fa-solid fa-trash"></i> 
->>>>>>> ba0b47c4d0024d0b845579f1ecd6fe0a447d699b:resources/views/livewire/products/stock-management.blade.php
                                             </button>
                                         </td>
                                     </tr>

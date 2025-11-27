@@ -78,7 +78,7 @@
                     <tbody>
                         @foreach($cart as $index => $item)
                             <tr>
-                                <td>{{ $item->product->title}}</td>
+                                <td>{{ $item['product_name'] }}</td> <!-- ✅ Fixed -->
                                 <td>{{ $item['quantity'] }}</td>
                                 <td>{{ number_format($item['price'], 2) }}</td>
                                 <td>{{ number_format($item['subtotal'], 2) }}</td>

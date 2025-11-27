@@ -1,5 +1,6 @@
 <div>
 <div class="container mt-4">
+  @include('includes.flash')
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow-lg">

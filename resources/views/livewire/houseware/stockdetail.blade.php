@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container mt-4 mb-3">
     <div class="card shadow">
         <div class="card-header text-white fw-bold" style="background-color:#009933;">
             <i class="fa fa-box"></i> {{ __('products.product_detail') }}
@@ -6,13 +6,13 @@
                     {{-- Horizontal Product Info Table --}}
             <div class="table-responsive mb-4">
                 <table class="table table-bordered table-striped w-100 text-center align-middle">
-                    <thead class="table-dark">
+                    <thead class="table-light">
                         <tr>
-                            <th>{{ __('products.brand') }}</th>
-                            <th>{{ __('products.category') }}</th>
-                            <th>{{ __('products.title') }}</th>
-                            <th>{{ __('products.quantity') }}</th>
-                            <th>{{ __('products.price') }}</th>
+                            <th class="text-center">{{ __('products.brand') }}</th>
+                            <th class="text-center">{{ __('products.category') }}</th>
+                            <th class="text-center">{{ __('products.title') }}</th>
+                            <th class="text-center">{{ __('products.quantity') }}</th>
+                            <th class="text-center">{{ __('products.price') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,12 +40,15 @@
             {{-- Description --}}
             <div class="mb-3">
                 <h5><strong>{{ __('products.description') }}:</strong></h5>
-                <p>{{ $product->description ?? __('products.not_available') }}</p>
+             <td>{{ $product->description ?? 'N/A' }}</td>
+
             </div>
 
-            <a href="{{ route('warehouse.stock-management') }}" class="btn btn-success">
-                {{ __('products.back_to_list') }}
-            </a>
+            <div class="ms-3 mb-3">
+                        <a href="{{ route('warehouse.stock-management') }}" class="btn text-light" style="background-color:#009933;">
+                            {{ __('products.back_to_list') }}
+                        </a>
+                    </div>
 
         </div>
     </div>

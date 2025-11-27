@@ -15,6 +15,7 @@ return [
     'shop_products'=>'Add Shop_products',
     'analytics' => 'Analytics',
     'customers' => 'Customers',
+    'view_products'=>'View Products',
     'create_customer' => 'Create Customer',
     'users' => 'Users',
     'create_user' => 'Create User',
@@ -31,5 +32,6 @@ return [
     'total_users' => 'Users',
     'total_customers' => 'All Customers',
     'total_sales' => 'Total Sales',
+    ''
 
 ];

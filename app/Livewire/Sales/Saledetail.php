@@ -4,7 +4,7 @@ namespace App\Livewire\Sales;
 
 use Livewire\Component;
 use App\Models\Sale;
-use App\Models\salesproduct;
+use App\Models\Salesproduct;
 
 class Saledetail extends Component
 {
@@ -23,7 +23,7 @@ class Saledetail extends Component
     {
 
      $this->selectedSale = Sale::find($this->saleId);
-    $this->selectedSaleProducts = salesproduct::with('product')->where('sale_id', $this->saleId)->get();
+     $this->selectedSaleProducts = Salesproduct::with('shopproduct.product')->where('sale_id', $this->saleId)->get();
         return view('livewire.sales.saledetail');
     }
 }

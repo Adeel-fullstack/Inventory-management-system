@@ -28,7 +28,7 @@
                                 <tbody>
                                     @foreach($selectedSaleProducts as $item)
                                         <tr>
-                                            <td>{{ $item->product?->title ?? __('sales.na') }}</td>
+                                            <td>{{ $item->shopproduct?->product?->title ?? __('sales.na') }}</td>
                                             <td>{{ $item->quantity }}</td>
                                             <td>{{ number_format($item->amount, 2) }}</td>
                                         </tr>

@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Sales;
 
-use App\Models\shopproduct;
+use App\Models\Shopproduct;
 use App\Models\Customer;
 use App\Models\Sale;
-use App\Models\salesproduct;
+use App\Models\Salesproduct;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -19,19 +19,19 @@ class NewSale extends Component
 
     public function mount()
     {
-        $this->products = shopproduct::all();
+        $this->products = Shopproduct::all();
         $this->customers = Customer::all();
     }
 
     public function updatedProductId($value)
     {
-        $product = shopproduct::with('product')->find($value);
+        $product = Shopproduct::with('product')->find($value);
 
         if ($product) {
             $this->price = $product->price;
             // If quantity is already set, update amount immediately
             if ($this->quantity) {
-                $this->amount = $product->price * $this->quantity;
+                $this->amount = $product->product->price * $this->quantity;
             }
         } else {
             $this->price = 0;
@@ -42,7 +42,7 @@ class NewSale extends Component
     public function updatedQuantity($value)
     {
         if ($this->product_id && $value) {
-            $product = shopproduct::find($this->product_id);
+            $product = Shopproduct::with(['product'])->find($this->product_id);
             
             if ($product) {
                 // Live stock check
@@ -51,7 +51,7 @@ class NewSale extends Component
                     return;
                 }
                 
-                $this->amount = $product->price * $value;
+                $this->amount = $product->product->price * $value;
             }
         } else {
             $this->amount = 0;
@@ -64,10 +64,10 @@ class NewSale extends Component
             'product_id' => 'required',
             'customer_id' => 'nullable|string',
             'quantity' => 'required|integer|min:1',
-            'amount' => 'numeric|min:0.01',            
+            'amount' => 'numeric',            
         ]);
 
-        $product = shopproduct::find($this->product_id);
+        $product = Shopproduct::with(['product'])->find($this->product_id);
 
         // Final stock check
         if ($product->quantity < $this->quantity) {
@@ -77,10 +77,10 @@ class NewSale extends Component
 
         $this->cart[] = [
             'product_id' => $product->id,
-            'product_name' => $product->title,
-            'price' => $product->price,
+            'product_name' => $product->product->title,
+            'price' => $product->product->price,
             'quantity' => $this->quantity,
-            'subtotal' => $product->price * $this->quantity,
+            'subtotal' => $product->product->price * $this->quantity,
         ];
 
         // Reset fields
@@ -117,7 +117,7 @@ class NewSale extends Component
             ]);
 
             foreach ($this->cart as $item) {
-                salesproduct::create([
+                Salesproduct::create([
                     'sale_id' => $sale->id,
                     'product_id' => $item['product_id'],
                     'quantity' => $item['quantity'],
@@ -126,7 +126,7 @@ class NewSale extends Component
                 ]);
 
                 // Deduct stock
-                $product = shopproduct::find($item['product_id']);
+                $product = Shopproduct::find($item['product_id']);
                 $product->quantity -= $item['quantity'];
                 $product->save();
             }

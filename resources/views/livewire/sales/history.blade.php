@@ -1,9 +1,9 @@
 <div>
     <div class="card shadow">
+            @include('includes.flash')
         <div class="card-header text-white fw-bold" style="background-color:#009933;">
             <i class="fa fa-users"></i> {{ __('sales.sales_history') }}
         </div>
-
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -13,6 +13,7 @@
                         <th>{{ __('sales.total') }}</th>
                         <th>{{ __('sales.discount') }}</th>
                         <th>{{ __('sales.final') }}</th>
+                        <th>{{ __('sales.status') }}</th>
                         <th>{{ __('sales.action') }}</th>
                     </tr>
                 </thead>
@@ -24,6 +25,8 @@
                             <td>{{ $sale->total }}</td>
                             <td>{{ $sale->discount }}</td>
                             <td>{{ $sale->final }}</td>
+                            <td>{{ $sale->status }}</td>
+
                             <td>
                                 <a href="{{ route('sales.detail', $sale->id) }}" class="btn btn-info btn-sm">
                                     <i class="fa fa-eye"></i> {{ __('sales.view') }}
@@ -31,6 +34,9 @@
                                 <button class="btn btn-danger btn-sm" wire:click="deleteSale({{ $sale->id }})" wire:confirm="{{ __('sales.delete_confirm') }}">
                                     <i class="fa fa-trash"></i>
                                 </button>
+                                 <button wire:click="returnSale({{ $sale->id }})" class="btn btn-success btn-sm" wire:loading.attr="disabled">
+                                <i class="fa-solid fa-rotate-left"></i> {{ __('sales.return') }}
+                                 </button>
                             </td>
                         </tr>
                     @empty

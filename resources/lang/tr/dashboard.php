@@ -13,6 +13,7 @@ return [
     'new_sales' => 'Yeni Satış',
     'history' => 'Geçmiş',
     'analytics' => 'Analizler',
+        'view_products' => 'Ürünleri Görüntüle',
     'shop_products'=>'Mağaza Ürünü Ekle',
     'customers' => 'Müşteriler',
     'create_customer' => 'Müşteri Oluştur',

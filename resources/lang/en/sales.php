@@ -15,6 +15,8 @@ return [
     'price' => 'Price',
     'subtotal' => 'Subtotal',
     'action' => 'Action',
+    'return'=>'Return',
+    'status'=>'Status',
     'save_sale' => 'Save Sale',
     'no_items' => 'No items in cart. Please add products.',
     'stock' => 'Stock',

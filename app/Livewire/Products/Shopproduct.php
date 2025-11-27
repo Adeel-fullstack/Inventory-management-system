@@ -3,8 +3,9 @@
 namespace App\Livewire\Products;
 
 use Livewire\Component;
-use App\Models\shopproduct as shopproductModel;
+use App\Models\Shopproduct as ShopproductModel;
 use App\Models\Product;
+use App\Models\Record;
 use Livewire\WithFileUploads;
 
 class Shopproduct extends Component
@@ -12,20 +13,14 @@ class Shopproduct extends Component
     use WithFileUploads;
 
     public $product_id;
-    public $description;
-    public $price;
     public $quantity;
-    public $thumbnail;
     public $totalproducts;
 
     public function Add()
     {
         $this->validate([
             'product_id' => 'required|exists:products,id',
-            'description' => 'nullable|string',
-            'price' => 'nullable|numeric|min:0',
             'quantity' => 'required|integer|min:1',
-            'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         // ✅ Get the original product from warehouse
@@ -42,24 +37,25 @@ class Shopproduct extends Component
         $warehouseProduct->save();
 
         // ✅ Save thumbnail if uploaded
-        $finalImagePath = null;
-        if ($this->thumbnail) {
-            $imageName = 'product_' . time() . '.' . $this->thumbnail->getClientOriginalExtension();
-            $finalImagePath = $this->thumbnail->storeAs('thumbnail', $imageName, 'public');
-        }
+        
+
 
         // ✅ Add product to shop
-        $product = new shopproductModel();
+        $product = new ShopproductModel();
         $product->product_id = $this->product_id;
-        $product->description = $this->description;
-        $product->price = $this->price;
         $product->quantity = $this->quantity;
-        $product->thumbnail = $finalImagePath;
         $product->save();
 
-        session()->flash('success', 'Product added to shop and warehouse stock updated!');
+        Record::create([
+        'product_id' => $this->product_id,
+        'warehouse_stock' => $warehouseProduct->quantity,
+        'shop_stock' => $this->quantity,
+        'transfer_quantity' => 0, // If this is the first transfer
+    ]);
 
-        $this->reset(['product_id', 'description', 'price', 'quantity', 'thumbnail']);
+        session()->flash('success', 'Product added Successfully');
+
+        $this->reset(['product_id',  'quantity']);
     }
 
     public function render()

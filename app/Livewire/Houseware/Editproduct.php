@@ -35,7 +35,7 @@ class Editproduct extends Component
         $this->description = $product->description;
         $this->price = $product->price;
         $this->quantity = $product->quantity;
-        $this->thumbnail = $product->thumbnail;
+        // $this->thumbnail = $product->thumbnail;
         
     }
 
@@ -55,16 +55,7 @@ class Editproduct extends Component
     {
         $this->validate();
 
-         $imageName = 'product_' . time() . '.jpg';
-         $finalImagePath = null;
-
-    if ($this->thumbnail) {
-        $finalImagePath = $this->thumbnail->storeAs('thumbnail', $imageName, 'public');
-    }
-    else {
-        $this->addError('photo', 'Image could not be saved.');
-        return;
-    }
+       
 
         $product = product::findOrFail($this->productId);
         $product->brand_id = $this->brand_id;
@@ -73,8 +64,13 @@ class Editproduct extends Component
         $product->description = $this->description;
         $product->price = $this->price;
         $product->quantity = $this->quantity;
-        $product->thumbnail = $finalImagePath;
         
+         if ($this->thumbnail instanceof \Livewire\TemporaryUploadedFile) {
+    $filename = 'product_' . time() . '.jpg';
+    $path = $this->thumbnail->storeAs('thumbnail', $filename, 'public');
+    $product->thumbnail = $path;
+}
+
         $product->save();
         
         session()->flash('success','Record Updated Successfully');

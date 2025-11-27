@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Dashboard;
+use App\Http\Controllers\Currentreport;
 use App\Livewire\Login;
 
 
@@ -9,14 +10,21 @@ Route::get('/',Login::class)->name('login');
 
  Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard',Dashboard::class)->name('dashboard');
+
+
+Route::get('/current-report', [Currentreport::class, 'export'])->name('current-report');
+
+
 // Products Routes
 Route::prefix('products')->name('products.')->group(function () {
-     Route::get('shop-products', \App\Livewire\Products\shopproduct::class)->name('shop.product');
-    Route::get('stock-management', \App\Livewire\Products\stockmanagement::class)->name('stock.management');
+     Route::get('shop-products', \App\Livewire\Products\Shopproduct::class)->name('shop.product');
+     Route::get('stock-management', \App\Livewire\Products\Stockmanagement::class)->name('stock.management');
+     Route::get('stock-detail/{id}', \App\Livewire\Products\Stockdetail::class)->name('stock-detail');
+     Route::get('Product-history/{id}', \App\Livewire\Products\ViewProducts::class)->name('history');
+
 
 
 });
-
 
 
 Route::prefix('warehouse')->name('warehouse.')->group(function () {
@@ -26,7 +34,7 @@ Route::prefix('warehouse')->name('warehouse.')->group(function () {
     Route::get('new', \App\Livewire\Houseware\AddProduct::class)->name('new');
     Route::get('edit-product/{id}', \App\Livewire\Houseware\Editproduct::class)->name('editproduct');
     Route::get('stock-management',\App\Livewire\Houseware\Stockmanagement::class)->name('stock-management');
-    Route::get('stock.detail/{id}',\App\Livewire\Houseware\Stockdetail::class)->name('stock.detail');
+    Route::get('stock-detail/{id}',\App\Livewire\Houseware\Stockdetail::class)->name('stock.detail');
 
 });
 
@@ -56,7 +64,7 @@ Route::get('/analytics', \App\Livewire\Analytics::class)->name('analytics');
 
 // Settings
 Route::get('/setting', \App\Livewire\Setting::class)->name('setting');
- });
+  });
 
 Route::get('/logout',function(){
     Auth::logout();

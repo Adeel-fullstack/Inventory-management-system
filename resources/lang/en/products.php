@@ -28,7 +28,7 @@ return [
     'add_product' => 'Add Product',
 
         'update' => 'Update',
-    'edit_product' => 'Edit Product',
+    'edit_product' => 'Edit Products',
 
     'product_detail' => 'Product Detail',
     'brand' => 'Brand',
@@ -41,8 +41,16 @@ return [
     'not_available' => 'N/A',
     'back_to_list' => '← Back to Product List',
 
-
-    'product_list' => 'Product List',
+    'title 1' => 'Product Movement History',
+    'product' => 'Product',
+    'warehouse_stock' => 'Warehouse Stock',
+    'shop_stock' => 'Shop Stock',
+    'transferred_qty' => 'Transferred QTY',
+    'date' => 'Date',
+    'no_records' => 'No product transfer records found.',
+    'product_lists' => 'Shop-Products',
+     'product_list' => 'Ware-house Products ',
+     'update'=>'Update',
     'action' => 'Action',
     'view' => 'View',
     'products_not_found' => 'Products not found.',
