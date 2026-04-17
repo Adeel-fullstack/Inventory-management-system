@@ -82,7 +82,7 @@ This system can be integrated with other modules such as:
 
 Clone the repository:
 
-git clone https://github.com/Adeel-fullstack/Pharmacy-control-system.git
+git clone https://github.com/Adeel-fullstack/Inventory-management-system.git
 
 Navigate to project folder:
 
