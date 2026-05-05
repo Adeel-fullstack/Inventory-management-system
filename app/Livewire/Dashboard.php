@@ -15,6 +15,9 @@ class Dashboard extends Component
       public $totalsales;
       public $totalcustomers;
       public $totalusers;
+      public $todayRevenue;
+      public $monthlyRevenue;
+      public $totalRevenue;
 
 
      public function mount()
@@ -23,6 +26,13 @@ class Dashboard extends Component
         $this->totalsales=Sale::count();
         $this->totalcustomers = Customer::count();
         $this->totalusers = User::count();
+
+        // Revenue calculations
+        $this->todayRevenue = Sale::whereDate('created_at', \Carbon\Carbon::today())->sum('final');
+        $this->monthlyRevenue = Sale::whereMonth('created_at', \Carbon\Carbon::now()->month)
+            ->whereYear('created_at', \Carbon\Carbon::now()->year)
+            ->sum('final');
+        $this->totalRevenue = Sale::sum('final');
 
         }
 

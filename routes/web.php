@@ -7,13 +7,10 @@ use App\Livewire\Login;
 
 
 Route::get('/',Login::class)->name('login');
-
- Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard',Dashboard::class)->name('dashboard');
 
-
 Route::get('/current-report', [Currentreport::class, 'export'])->name('current-report');
-
 
 // Products Routes
 Route::prefix('products')->name('products.')->group(function () {
@@ -22,12 +19,10 @@ Route::prefix('products')->name('products.')->group(function () {
      Route::get('stock-detail/{id}', \App\Livewire\Products\Stockdetail::class)->name('stock-detail');
      Route::get('Product-history/{id}', \App\Livewire\Products\ViewProducts::class)->name('history');
 
-
-
 });
 
 
-Route::prefix('warehouse')->name('warehouse.')->group(function () {
+    Route::prefix('warehouse')->name('warehouse.')->group(function () {
 
     Route::get('new-brand', \App\Livewire\Houseware\Brand::class)->name('brand');
     Route::get('new-category', \App\Livewire\Houseware\Category::class)->name('category');
@@ -49,10 +44,8 @@ Route::prefix('customers')->name('customers.')->group(function () {
 Route::prefix('sales')->name('sales.')->group(function () {
     Route::get('new', \App\Livewire\Sales\NewSale::class)->name('new');
     Route::get('history', \App\Livewire\Sales\History::class)->name('history');
-     Route::get('saledetail/{id}', \App\Livewire\Sales\Saledetail::class)->name('detail');
-
+    Route::get('saledetail/{id}', \App\Livewire\Sales\Saledetail::class)->name('detail');
 });
-
 // Users Routes
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('create', \App\Livewire\Users\CreateUser::class)->name('create');
@@ -64,13 +57,12 @@ Route::get('/analytics', \App\Livewire\Analytics::class)->name('analytics');
 
 // Settings
 Route::get('/setting', \App\Livewire\Setting::class)->name('setting');
-  });
+   });
 
 Route::get('/logout',function(){
     Auth::logout();
     return redirect(route('login'));
 })->name('logout');
-
 
 // Your existing routes...
 

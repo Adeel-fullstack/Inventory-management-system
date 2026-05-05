@@ -19,5 +19,6 @@ class AppServiceProvider extends ServiceProvider
         
         // Optional: Share current locale with all views
         view()->share('currentLocale', app()->getLocale());
+
     }
 }

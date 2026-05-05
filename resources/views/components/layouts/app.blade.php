@@ -88,7 +88,7 @@
         <ul class="br-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{ route('sales.new')}}" class="nav-link {{ Request::routeIs('sales.new')? 'active' : '' }}">{{ __('dashboard.new_sales') }}</a></li>
           <li class="nav-item"><a href="{{ route('sales.history')}}" class="nav-link {{ Request::routeIs('sales.history')? 'active' : '' }}">{{ __('dashboard.history') }}</a></li>
-           <li class="nav-item"><a href="{{ route('sales.products')}}" class="nav-link">Products History</a></li>
+           {{-- <li class="nav-item"><a href="{{ route('sales.products')}}" class="nav-link">Products History</a></li> --}}
         </ul>
 
         <a href="{{ route('analytics')}}" class="text-white">

@@ -25,7 +25,16 @@
                             <td>{{ $sale->total }}</td>
                             <td>{{ $sale->discount }}</td>
                             <td>{{ $sale->final }}</td>
-                            <td>{{ $sale->status }}</td>
+                            <td>
+                                @if($sale->status == 1)
+                                    <span class="badge bg-success">Completed</span>
+                                @elseif($sale->status == 2)
+                                    <span class="badge bg-danger">Returned</span>
+                                @else
+                                    <span class="badge bg-secondary">{{ $sale->status }}</span>
+                                @endif
+                            </td>
+
 
                             <td>
                                 <a href="{{ route('sales.detail', $sale->id) }}" class="btn btn-info btn-sm">
