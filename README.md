@@ -1,61 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## 📦 Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The Inventory Management System is designed to efficiently track, organize, and manage stock across any business or organization. It provides real-time visibility into inventory levels and ensures smooth operational workflow.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🔍 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### 📋 Item Management
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Add, update, and delete inventory items
+* Organize items by categories or types
+* Store essential details such as:
 
-## Learning Laravel
+  * Item name
+  * SKU / ID
+  * Quantity
+  * Price
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 📊 Stock Tracking
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Real-time tracking of available inventory
+* Automatic updates when items are added or removed
+* Prevents stock inconsistencies and errors
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### ⚠️ Low Stock Alerts
 
-### Premium Partners
+* Get notified when inventory falls below a defined threshold
+* Helps in timely restocking and avoids shortages
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+#### 📥 Stock In & Out Management
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Record incoming stock (purchases/restocks)
+* Track outgoing stock (sales/usage)
+* Maintain complete transaction history
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 📈 Reporting & Analytics
 
-## Security Vulnerabilities
+* Generate inventory reports
+* View stock levels, movements, and trends
+* Supports better decision-making
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+#### 🔄 Inventory Control
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Maintain accurate stock balance
+* Reduce overstocking and understocking
+* Improve operational efficiency
+
+---
+
+## 🎯 Benefits
+
+* ✔️ Improved inventory accuracy
+* ✔️ Reduced manual tracking errors
+* ✔️ Better stock planning and control
+* ✔️ Increased operational efficiency
+* ✔️ Real-time visibility of inventory
+
+---
+
+## 🔗 Integration
+
+This system can be integrated with other modules such as:
+
+* Billing systems (automatic stock deduction)
+* Sales and purchase systems
+* Reporting dashboards
+
+---
+
+⚙️ Installation
+
+Clone the repository:
+
+git clone https://github.com/Adeel-fullstack/Inventory-management-system.git
+
+Navigate to project folder:
+
+cd Pharmacy-control-system
+
+Install dependencies:
+
+composer install
+
+Copy .env file:
+
+cp .env.example .env
+Configure database in .env
+
+Generate application key:
+
+php artisan key:generate
+
+Run migrations:
+
+php artisan migrate
+
+Start server:
+
+php artisan serve
+📸
