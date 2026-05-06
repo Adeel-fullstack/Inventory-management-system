@@ -74,3 +74,13 @@ Route::get('/language/{lang}', function ($lang) {
     session()->put('locale', $lang);
     return redirect()->back();
 })->name('language.switch');
+
+// Temporary route to run migrations on Railway
+Route::get('/run-migrations', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return "Migrations ran successfully! Output: " . \Illuminate\Support\Facades\Artisan::output();
+    } catch (\Exception $e) {
+        return "Error running migrations: " . $e->getMessage();
+    }
+});
