@@ -14,9 +14,9 @@ Route::get('/current-report', [Currentreport::class, 'export'])->name('current-r
 
 // Products Routes
 Route::prefix('products')->name('products.')->group(function () {
-     Route::get('shop-products', \App\Livewire\Products\Shopproduct::class)->name('shop.product');
-     Route::get('stock-management', \App\Livewire\Products\Stockmanagement::class)->name('stock.management');
-     Route::get('stock-detail/{id}', \App\Livewire\Products\Stockdetail::class)->name('stock-detail');
+     Route::get('shop-products', \App\Livewire\Products\ShopProduct::class)->name('shop.product');
+     Route::get('stock-management', \App\Livewire\Products\StockManagement::class)->name('stock.management');
+     Route::get('stock-detail/{id}', \App\Livewire\Products\StockDetail::class)->name('stock-detail');
      Route::get('Product-history/{id}', \App\Livewire\Products\ViewProducts::class)->name('history');
 
 });
@@ -27,9 +27,9 @@ Route::prefix('products')->name('products.')->group(function () {
     Route::get('new-brand', \App\Livewire\Houseware\Brand::class)->name('brand');
     Route::get('new-category', \App\Livewire\Houseware\Category::class)->name('category');
     Route::get('new', \App\Livewire\Houseware\AddProduct::class)->name('new');
-    Route::get('edit-product/{id}', \App\Livewire\Houseware\Editproduct::class)->name('editproduct');
-    Route::get('stock-management',\App\Livewire\Houseware\Stockmanagement::class)->name('stock-management');
-    Route::get('stock-detail/{id}',\App\Livewire\Houseware\Stockdetail::class)->name('stock.detail');
+    Route::get('edit-product/{id}', \App\Livewire\Houseware\EditProduct::class)->name('editproduct');
+    Route::get('stock-management',\App\Livewire\Houseware\StockManagement::class)->name('stock-management');
+    Route::get('stock-detail/{id}',\App\Livewire\Houseware\StockDetail::class)->name('stock.detail');
 
 });
 

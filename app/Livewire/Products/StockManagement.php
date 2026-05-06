@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Shopproduct;
 use App\Models\Record;
 
-class Stockmanagement extends Component
+class StockManagement extends Component
 {
     public $selectedShopProduct;
     public $warehouseQuantity;
@@ -79,6 +79,6 @@ public function getUpdatedShopQuantityProperty()
     public function render()
     {
         $products = Shopproduct::with('product')->get();
-        return view('livewire.products.stockmanagement', compact('products'));
+        return view('livewire.products.stock-management', compact('products'));
     }
 }

@@ -4,7 +4,7 @@ namespace App\Livewire\Products;
 use App\Models\Shopproduct;
 use Livewire\Component;
 
-class Stockdetail extends Component
+class StockDetail extends Component
 {
    
  public $product;
@@ -17,6 +17,6 @@ class Stockdetail extends Component
 
     public function render()
     {
-        return view('livewire.products.stockdetail');
+        return view('livewire.products.stock-detail');
     }
 }

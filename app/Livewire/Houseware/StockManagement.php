@@ -8,7 +8,7 @@ use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\View;
 
-class Stockmanagement extends Component
+class StockManagement extends Component
 {
     public function deleteproduct($id)
     {
@@ -41,6 +41,6 @@ class Stockmanagement extends Component
         $brands = Brand::all();
         $products = Product::with(['brand', 'category'])->get();
 
-        return view('livewire.houseware.stockmanagement', compact('products', 'brands', 'categories'));
+        return view('livewire.houseware.stock-management', compact('products', 'brands', 'categories'));
     }
 }

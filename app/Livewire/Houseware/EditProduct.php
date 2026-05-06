@@ -8,7 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 
-class Editproduct extends Component
+class EditProduct extends Component
 {
 
 
@@ -82,7 +82,7 @@ class Editproduct extends Component
     {
         $brands=Brand::all();
         $categories=Category::all();
-        return view('livewire.houseware.editproduct',compact('brands','categories'));
+        return view('livewire.houseware.edit-product',compact('brands','categories'));
     }
 
    

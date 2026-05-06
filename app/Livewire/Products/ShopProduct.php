@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Record;
 use Livewire\WithFileUploads;
 
-class Shopproduct extends Component
+class ShopProduct extends Component
 {
     use WithFileUploads;
 
@@ -62,6 +62,6 @@ class Shopproduct extends Component
     {
         $products = Product::all();
 
-        return view('livewire.products.shopproduct', compact('products'));
+        return view('livewire.products.shop-product', compact('products'));
     }
 }
