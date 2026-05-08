@@ -20,31 +20,25 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /app
 
-# Copy composer files and install PHP dependencies
-COPY composer.json composer.lock ./
+# 1. Copy dependencies first for better caching
+COPY composer.json composer.lock package.json package-lock.json* ./
 RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
+RUN npm install
 
-# Copy package files and build frontend
-COPY package.json package-lock.json* ./
-RUN npm install && npm run build || true
-
-# Copy the rest of the application
+# 2. Copy the rest of the application
 COPY . .
 
-# Re-run composer to execute post-install scripts
-RUN composer install --no-dev --no-interaction --optimize-autoloader
+# 3. Build assets (Requires resources folder which is now present)
+RUN npm run build
 
-# Create required directories and set permissions
+# 4. Final PHP optimizations
+RUN composer install --no-dev --no-interaction --optimize-autoloader
 RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# DO NOT cache config here — DB variables are not available at build time
-# Only cache views (no DB needed)
-RUN php artisan view:cache || true
-
 # Expose the port Railway assigns
 EXPOSE ${PORT:-80}
 
-# Start the server WITHOUT auto-migration
+# Start the server
 CMD php artisan serve --host=0.0.0.0 --port=${PORT:-80}
