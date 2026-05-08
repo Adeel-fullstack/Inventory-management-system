@@ -84,3 +84,24 @@ Route::get('/run-migrations', function () {
         return "Error running migrations: " . $e->getMessage();
     }
 });
+
+// Temporary debug route - DELETE AFTER FIXING
+Route::get('/debug-db', function () {
+    return response()->json([
+        'DB_CONNECTION' => env('DB_CONNECTION'),
+        'DB_HOST' => env('DB_HOST'),
+        'DB_PORT' => env('DB_PORT'),
+        'DB_DATABASE' => env('DB_DATABASE'),
+        'DB_USERNAME' => env('DB_USERNAME'),
+        'DB_PASSWORD' => env('DB_PASSWORD') ? '***SET***' : '***EMPTY***',
+        'MYSQLHOST' => env('MYSQLHOST'),
+        'MYSQL_URL' => env('MYSQL_URL') ? '***SET***' : '***EMPTY***',
+        'SESSION_DRIVER' => env('SESSION_DRIVER'),
+        'actual_config' => [
+            'host' => config('database.connections.mysql.host'),
+            'port' => config('database.connections.mysql.port'),
+            'database' => config('database.connections.mysql.database'),
+            'username' => config('database.connections.mysql.username'),
+        ],
+    ]);
+});
