@@ -1,1 +1,1 @@
-release: php artisan config:clear && php artisan migrate --force
+release: sleep 10 && php artisan config:clear && php artisan migrate --force
