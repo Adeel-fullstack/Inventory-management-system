@@ -105,3 +105,19 @@ Route::get('/debug-db', function () {
         ],
     ]);
 });
+
+// Temporary route to create admin user - DELETE AFTER USE
+Route::get('/create-admin', function () {
+    try {
+        $user = \App\Models\User::firstOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('admin123'),
+            ]
+        );
+        return "Admin user created! Email: admin@admin.com | Password: admin123";
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+});
