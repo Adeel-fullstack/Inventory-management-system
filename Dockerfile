@@ -1,44 +1,48 @@
 FROM dunglas/frankenphp:php8.2-bookworm
 
-# Install system dependencies
+# 1. Install production dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    zip \
-    libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql zip \
+    git unzip zip libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# 2. Enable Production OPcache
+RUN { \
+    echo 'opcache.memory_consumption=128'; \
+    echo 'opcache.interned_strings_buffer=8'; \
+    echo 'opcache.max_accelerated_files=4000'; \
+    echo 'opcache.revalidate_freq=2'; \
+    echo 'opcache.fast_shutdown=1'; \
+    echo 'opcache.enable_cli=1'; \
+    } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 # Install Node.js for Vite build
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /app
 
-# 1. Copy dependencies first for better caching
+# 3. Copy dependencies first
 COPY composer.json composer.lock package.json package-lock.json* ./
 RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
 RUN npm install
 
-# 2. Copy the rest of the application
+# 4. Copy application and build
 COPY . .
-
-# 3. Build assets (Requires resources folder which is now present)
 RUN npm run build
 
-# 4. Final PHP optimizations
+# 5. Final optimizations
 RUN composer install --no-dev --no-interaction --optimize-autoloader
 RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# Expose the port Railway assigns
-EXPOSE ${PORT:-80}
+# Use FrankenPHP's default entrypoint (much faster than artisan serve)
+ENV PORT=80
+EXPOSE 80
 
-# Start the server
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-80}
+# Production Start Command: Optimizes Laravel THEN starts the high-speed server
+CMD php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan event:cache && frankenphp run --config /etc/caddy/Caddyfile --adapter caddyfile
