@@ -6,6 +6,5 @@ cmds = [
     "composer install --no-dev --no-interaction",
     "npm install && npm run build",
     "mkdir -p storage/framework/{sessions,views,cache} bootstrap/cache",
-    "chmod -R 775 storage bootstrap/cache",
-    "php artisan view:cache"
+    "chmod -R 775 storage bootstrap/cache"
 ]
