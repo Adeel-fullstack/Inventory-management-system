@@ -13,12 +13,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Set the application locale from session or default
-        $locale = session('locale', config('app.locale'));
-        app()->setLocale($locale);
-        
-        // Optional: Share current locale with all views
+        // View sharing is fine, but locale setting should be in middleware
         view()->share('currentLocale', app()->getLocale());
-
     }
 }
