@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Sales;
 
-use App\Models\Shopproduct;
+use App\Models\ShopProduct;
 use App\Models\Customer;
 use App\Models\Sale;
-use App\Models\Salesproduct;
+use App\Models\SalesProduct;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -19,13 +19,13 @@ class NewSale extends Component
 
     public function mount()
     {
-        $this->products = Shopproduct::all();
+        $this->products = ShopProduct::all();
         $this->customers = Customer::all();
     }
 
     public function updatedProductId($value)
     {
-        $product = Shopproduct::with('product')->find($value);
+        $product = ShopProduct::with('product')->find($value);
 
         if ($product) {
             $this->price = $product->price;
@@ -42,7 +42,7 @@ class NewSale extends Component
     public function updatedQuantity($value)
     {
         if ($this->product_id && $value) {
-            $product = Shopproduct::with(['product'])->find($this->product_id);
+            $product = ShopProduct::with(['product'])->find($this->product_id);
             
             if ($product) {
                 // Live stock check
@@ -67,7 +67,7 @@ class NewSale extends Component
             'amount' => 'numeric',            
         ]);
 
-        $product = Shopproduct::with(['product'])->find($this->product_id);
+        $product = ShopProduct::with(['product'])->find($this->product_id);
 
         // Final stock check
         if ($product->quantity < $this->quantity) {
@@ -117,7 +117,7 @@ class NewSale extends Component
             ]);
 
             foreach ($this->cart as $item) {
-                Salesproduct::create([
+                SalesProduct::create([
                     'sale_id' => $sale->id,
                     'product_id' => $item['product_id'],
                     'quantity' => $item['quantity'],
@@ -126,7 +126,7 @@ class NewSale extends Component
                 ]);
 
                 // Deduct stock
-                $product = Shopproduct::find($item['product_id']);
+                $product = ShopProduct::find($item['product_id']);
                 $product->quantity -= $item['quantity'];
                 $product->save();
             }

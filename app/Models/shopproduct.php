@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shopproduct extends Model
+class ShopProduct extends Model
 {
     protected $fillable=['product_id','description','quantity','price','thumbnail'];
 

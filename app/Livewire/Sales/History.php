@@ -4,8 +4,8 @@ namespace App\Livewire\Sales;
 
 use Livewire\Component;
 use App\Models\Sale;
-use App\Models\Salesproduct;
-use App\Models\Shopproduct;
+use App\Models\SalesProduct;
+use App\Models\ShopProduct;
 
 class History extends Component
 {
@@ -33,10 +33,10 @@ class History extends Component
         }
 
         // Restore product quantities
-        $saleProducts = Salesproduct::where('sale_id', $sale->id)->get();
+        $saleProducts = SalesProduct::where('sale_id', $sale->id)->get();
 
         foreach ($saleProducts as $saleProduct) {
-            $product = Shopproduct::find($saleProduct->product_id);
+            $product = ShopProduct::find($saleProduct->product_id);
             if ($product) {
                 $product->quantity += $saleProduct->quantity;
                 $product->save();

@@ -3,7 +3,7 @@
 namespace App\Livewire\Products;
 
 use Livewire\Component;
-use App\Models\Shopproduct;
+use App\Models\ShopProduct;
 use App\Models\Record;
 
 class StockManagement extends Component
@@ -17,7 +17,7 @@ class StockManagement extends Component
     public function openQuantityModal($id)
     {
 
-        $this->selectedShopProduct = Shopproduct::with('product')->find($id);
+        $this->selectedShopProduct = ShopProduct::with('product')->find($id);
 
         if ($this->selectedShopProduct) {
             $this->warehouseQuantity = $this->selectedShopProduct->product->quantity;
@@ -56,7 +56,7 @@ class StockManagement extends Component
     ]);
 
     // ✅ Refresh product list so table updates
-    $this->products = Shopproduct::with('product')->get();
+    $this->products = ShopProduct::with('product')->get();
 
     // Reset modal and values
     $this->reset(['selectedShopProduct', 'warehouseQuantity', 'shopQuantity', 'additionalQuantity', 'showQuantityModal']);
@@ -78,7 +78,7 @@ public function getUpdatedShopQuantityProperty()
 
     public function render()
     {
-        $products = Shopproduct::with('product')->get();
+        $products = ShopProduct::with('product')->get();
         return view('livewire.products.stock-management', compact('products'));
     }
 }

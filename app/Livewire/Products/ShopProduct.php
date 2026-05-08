@@ -3,7 +3,7 @@
 namespace App\Livewire\Products;
 
 use Livewire\Component;
-use App\Models\Shopproduct as ShopproductModel;
+use App\Models\ShopProduct as ShopProductModel;
 use App\Models\Product;
 use App\Models\Record;
 use Livewire\WithFileUploads;
@@ -41,7 +41,7 @@ class ShopProduct extends Component
 
 
         // ✅ Add product to shop
-        $product = new ShopproductModel();
+        $product = new ShopProductModel();
         $product->product_id = $this->product_id;
         $product->quantity = $this->quantity;
         $product->save();

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Products;
-use App\Models\Shopproduct;
+use App\Models\ShopProduct;
 use Livewire\Component;
 
 class StockDetail extends Component
@@ -11,7 +11,7 @@ class StockDetail extends Component
 
     public function mount($id)
     {
-        $this->product=Shopproduct::with(['product'])->findOrFail($id);
+        $this->product=ShopProduct::with(['product'])->findOrFail($id);
     }
 
 
