@@ -45,4 +45,4 @@ ENV PORT=80
 EXPOSE 80
 
 # Production Start Command: Optimizes Laravel THEN starts the high-speed server
-CMD php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan event:cache && frankenphp run --config /etc/caddy/Caddyfile --adapter caddyfile
+CMD php artisan config:cache && php artisan route:cache && php artisan view:cache && frankenphp php-server --listen :$PORT --root public/
