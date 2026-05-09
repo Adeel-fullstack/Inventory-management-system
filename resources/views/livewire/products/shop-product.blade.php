@@ -20,7 +20,8 @@
                                     <select wire:model.defer="product_id" id="product_id" class="form-control">
                                         <option value="">{{ __('products.select_product') }}</option>
                                         @foreach($products as $product)
-                                            <option value="{{ $product->id }}">{{ $product->title }} : {{ $product->quantity }}</option>
+                                            <option value="{{ $product->id }}">{{ $product->title }} :
+                                                {{ $product->quantity }}</option>
                                         @endforeach
                                     </select>
                                     @error('product_id') <div class="text-danger small">{{ $message }}</div> @enderror

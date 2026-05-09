@@ -37,7 +37,7 @@ class ShopProduct extends Component
         $warehouseProduct->save();
 
         // ✅ Save thumbnail if uploaded
-        
+
 
 
         // ✅ Add product to shop
@@ -47,15 +47,15 @@ class ShopProduct extends Component
         $product->save();
 
         Record::create([
-        'product_id' => $this->product_id,
-        'warehouse_stock' => $warehouseProduct->quantity,
-        'shop_stock' => $this->quantity,
-        'transfer_quantity' => 0, // If this is the first transfer
-    ]);
+            'product_id' => $this->product_id,
+            'warehouse_stock' => $warehouseProduct->quantity,
+            'shop_stock' => $this->quantity,
+            'transfer_quantity' => 0, // If this is the first transfer
+        ]);
 
         session()->flash('success', 'Product added Successfully');
 
-        $this->reset(['product_id',  'quantity']);
+        $this->reset(['product_id', 'quantity']);
     }
 
     public function render()
